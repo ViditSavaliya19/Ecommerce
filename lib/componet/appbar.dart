@@ -32,7 +32,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
                   fontSize: 21,
                   fontWeight: FontWeight.bold),
             ),
-            Align(alignment:Alignment.topRight,child: CartIcon()),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Align(alignment:Alignment.topRight,child: CartIcon()),
+            ),
           ],
         ),
       ),
