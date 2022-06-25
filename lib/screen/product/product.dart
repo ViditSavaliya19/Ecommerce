@@ -79,6 +79,8 @@ class _ProductScreenState extends State<ProductScreen> {
                         InkWell(
                           onTap: (){
                             controller.cartList.add(productModel);
+
+                            print(controller.cartList.length);
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,

@@ -1,5 +1,6 @@
 import 'package:ecommerce/componet/cartIcon.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSize {
   const CustomAppBar(
@@ -34,7 +35,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSize {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Align(alignment:Alignment.topRight,child: CartIcon()),
+              child: Align(
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(onTap: () {
+                    Get.toNamed('/cart');
+                  }, child: CartIcon())),
             ),
           ],
         ),
