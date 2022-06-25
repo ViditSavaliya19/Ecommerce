@@ -1,4 +1,9 @@
-import 'package:ecommerce/screen/home/homescreen.dart';
+import 'package:ecommerce/screen/home/view/homescreen.dart';
 import 'package:get/route_manager.dart';
 
-routes() => [GetPage(name: '/', page: () => HomeScreen())];
+import '../screen/product/product.dart';
+
+routes() => [
+      GetPage(name: '/', page: () => HomeScreen()),
+      GetPage(name: '/product', page: () => ProductScreen()),
+    ];

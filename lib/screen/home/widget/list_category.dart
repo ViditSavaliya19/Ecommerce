@@ -1,4 +1,4 @@
-import 'package:ecommerce/screen/home/controller.dart';
+import 'package:ecommerce/screen/home/controller/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
@@ -9,46 +9,47 @@ class ListCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Obx(
-          () => GestureDetector(
-              onTap: () {
-                controller.categorySelcted.value = 0;
-              },
-              child: categoryItem(
-                  "Fruits",
-                  controller.categorySelcted.value == 0
-                      ? Colors.amber
-                      : Colors.transparent,
-                  controller.categorySelcted.value == 0 ? Colors.black:Colors.black38)),
-        ),
-        SizedBox(
-          width: 20,
-        ),
-        Obx(
-          () => GestureDetector(
-              onTap: () {
-                controller.categorySelcted.value = 1;
-              },
-              child: categoryItem(
-                  "Vegetables",
-                  controller.categorySelcted.value == 1
-                      ? Colors.green
-                      : Colors.transparent,
-                  controller.categorySelcted.value == 1 ?Colors.black:Colors.black38)),
-        ),
-      ],
+    return Container(
+      height: 50,
+      child: ListView.builder(
+        itemCount:controller.categoryList.length,
+        scrollDirection: Axis.horizontal,
+
+        itemBuilder: (context, index) {
+          return Obx(
+                () =>
+                Container(
+                  margin: EdgeInsets.only(right: 20),
+                  child: GestureDetector(
+                      onTap: () {
+                        controller.categorySelcted.value = index;
+                        controller.categoryKey.value = controller.categoryList[index]['key'];
+                        print("======== ${controller.categoryList[index]['key']}");
+                        controller.loadProductData();
+                      },
+                      child: categoryItem(
+                          "${controller.categoryList[index]['name']}",
+                          controller.categorySelcted.value == index
+                              ? Colors.amber
+                              : Colors.transparent,
+                          controller.categorySelcted.value == index
+                              ? Colors.black
+                              : Colors.black38)),
+                ),
+          );
+        },
+      ),
     );
   }
 
-  Widget categoryItem(String item, Color itemTint,  Color textTint) {
+  Widget categoryItem(String item, Color itemTint, Color textTint) {
     return Container(
       child: Column(
         children: [
           Text(
             "$item",
-            style: TextStyle( color: textTint,fontWeight: FontWeight.bold,fontSize: 20),
+            style: TextStyle(
+                color: textTint, fontWeight: FontWeight.bold, fontSize: 20),
           ),
           SizedBox(
             height: 10,
